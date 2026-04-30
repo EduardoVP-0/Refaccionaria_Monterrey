@@ -1,0 +1,56 @@
+1. Mostrar el ID y el nombre de cada departamento junto con el salario promedio de
+sus empleados (redondeado a dos decimales), uniendo las tablas de empleados y
+departamentos por su ID común y ordenando los resultados según el ID del
+departamento.
+
+2. Genera un reporte que lleve como título “Reporte de Antigüedad “ que muestre
+el nombre completo, la fecha de contratación, el ID y el nombre del
+departamento de los empleados que trabajan específicamente en el departamento
+20. Además, calcula cuántas semanas completas han pasado desde que cada uno
+fue contratado y presenta la lista ordenada de los más antiguos a los más nuevos,
+resolviendo empates por orden alfabético del apellido. En resumen: Genera un
+reporte detallado del departamento 20 que incluye la antigüedad en semanas de
+cada empleado, ordenado por tiempo en la empresa y apellido.
+
+3. Realiza un reporte que muestre el ID, el nombre y el gasto total en salarios de cada
+departamento, pero solo incluye a aquellos departamentos donde la suma de
+todos los sueldos de sus empleados sea mayor a 15,000. Al final, organiza la lista
+en orden numérico según el ID del departamento. En resumen: Haz una lista de los
+departamentos que gastan más de 15,000 en nómina, mostrando cuánto gasta
+cada uno y ordenándolos por su número de identificación.
+
+4. Muestra el ID, el nombre del puesto y el gasto total en sueldos de cada cargo, pero
+solo de aquellos cuyo código de identificación no termina con las letras "TRAN".
+Además, solo incluye los puestos donde la suma de todos los salarios de sus
+empleados sea mayor a 2,000, organizando la lista final por el número de ID del
+puesto. En resumen: Haz un reporte de cuánto se gasta en sueldos por cada tipo
+de puesto, excluyendo los de transporte (o que terminan en 'TRAN') y que sumen
+más de 2,000 en total.
+
+5. Realiza un reporte que muestre el puesto de cada empleado, su nombre
+completo y el nombre de su jefe directo. El reporte aparece en forma de lista
+organizada alfabéticamente: primero por el nombre del gerente (para ver a todo su
+equipo junto) y luego por el nombre del colaborador
+
+6. En relación al reporte anterior, crea un nuevo reporte de todos los jefes y cuenta
+cuántas personas tienen a su cargo, ordenando los resultados para que aparezcan
+primero los gerentes que tienen los equipos más grandes.
+
+7. Genera un reporte geográfico detallado de toda la plantilla de la empresa. Crea una
+lista que muestra el ID y el nombre completo de cada empleado, indicando en
+que departamento trabaja y exactamente en que ciudad y estado se encuentra su
+oficina. La lista final aparece organizada alfabéticamente por estado y luego por
+ciudad.
+
+8. Realiza un reporte que busque la ficha específica de información sobre un
+colaborador por su nombre y apellido paterno y que muestre exactamente
+que puesto ocupa, en que departamento está y su ubicación geográfica completa,
+incluyendo la ciudad y el estado donde trabaja.
+
+9. Genera un reporte para encontrar a los empleados que tienen los sueldos más
+bajos de toda la empresa en comparación con el grupo ‘IT_PROG’. Es decir,
+muestra a todos los colaboradores que ganan menos que el programador que
+menos gana.
+
+10. Realiza un reporte que muestre a todos los empleados que no tienen a nadie a su
+cargo, junto con su puesto y su jefe, ordenados por el nombre del puesto.
