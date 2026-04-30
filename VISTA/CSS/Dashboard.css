@@ -380,6 +380,17 @@ nav.open .sidebar {
     .current-date { display: none; }
 }
 
+nav.open {
+    background: transparent;
+    box-shadow: none;
+}
+
 nav.open .logo {
     display: none;
+}
+
+nav.open .nav-right {
+    opacity: 0.2;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }

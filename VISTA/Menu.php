@@ -8,7 +8,24 @@
     <!-- Header superior -->
     <div class="nav-right">
         <div class="nav-item date-period" style="display: flex; gap: 15px; align-items: center; color: #a1a1aa;">
-            <span class="current-date"><?php setlocale(LC_TIME, 'es_ES.UTF-8'); echo strftime("%A, %d de %B de %Y"); ?></span>
+            <span class="current-date">
+                <?php 
+                // Configurar zona horaria de CDMX
+                date_default_timezone_set('America/Mexico_City');
+                
+                // Arreglos en español para forzar el idioma sin depender del servidor
+                $dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                $meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                
+                $diaSemana = $dias[date('w')];
+                $diaMes = date('d');
+                $mes = $meses[date('n') - 1];
+                $año = date('Y');
+                $hora = date('h:i A'); // Agregado también la hora como pediste dinámico
+                
+                echo "$diaSemana, $diaMes de $mes de $año | $hora"; 
+                ?>
+            </span>
         </div>
 
         <div class="nav-item profile">
@@ -43,39 +60,11 @@
                     </a>
                 </li>
 
-                <!-- Usuarios (Inactivo por ahora) -->
+                <!-- Usuarios -->
                 <li class="list">
                     <a href="#" class="nav-link">
                         <i class='bx bx-group icon'></i>
-                        <span class="link">Empleados</span>
-                    </a>
-                </li>
-                
-                <li class="list">
-                    <a href="#" class="nav-link">
-                        <i class='bx bx-buildings icon'></i>
-                        <span class="link">Departamentos</span>
-                    </a>
-                </li>
-                
-                <li class="list">
-                    <a href="#" class="nav-link">
-                        <i class='bx bx-map-pin icon'></i>
-                        <span class="link">Sucursales</span>
-                    </a>
-                </li>
-                
-                <li class="list">
-                    <a href="#" class="nav-link">
-                        <i class='bx bx-briefcase icon'></i>
-                        <span class="link">Puestos</span>
-                    </a>
-                </li>
-                
-                <li class="list">
-                    <a href="#" class="nav-link">
-                        <i class='bx bx-cog icon'></i>
-                        <span class="link">Configuración</span>
+                        <span class="link">Usuarios</span>
                     </a>
                 </li>
             </ul>

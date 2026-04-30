@@ -42,7 +42,7 @@ $gasto_mensual = number_format($modelo->getGastoMensualTotal(), 2);
         <!-- Tarjetas Generales (Estilo Dashboard WECSTEP) -->
         <div class="cards-container">
             <div class="card-info">
-                <div class="card-icon" style="background:#eff6ff; color:#3b82f6;">
+                <div class="card-icon" >
                     <i class='bx bx-group'></i>
                 </div>
                 <div class="card-content" style="text-align: right;">
@@ -52,7 +52,7 @@ $gasto_mensual = number_format($modelo->getGastoMensualTotal(), 2);
             </div>
 
             <div class="card-info">
-                <div class="card-icon" style="background:#fef2f2; color:#ef4444;">
+                <div class="card-icon" >
                     <i class='bx bx-buildings'></i>
                 </div>
                 <div class="card-content" style="text-align: right;">
@@ -62,7 +62,7 @@ $gasto_mensual = number_format($modelo->getGastoMensualTotal(), 2);
             </div>
 
             <div class="card-info">
-                <div class="card-icon" style="background:#ecfdf5; color:#10b981;">
+                <div class="card-icon" >
                     <i class='bx bx-map-pin'></i>
                 </div>
                 <div class="card-content" style="text-align: right;">
@@ -72,7 +72,7 @@ $gasto_mensual = number_format($modelo->getGastoMensualTotal(), 2);
             </div>
 
             <div class="card-info">
-                <div class="card-icon" style="background:#fef3c7; color:#f59e0b;">
+                <div class="card-icon" >
                     <i class='bx bx-dollar-circle'></i>
                 </div>
                 <div class="card-content" style="text-align: right;">

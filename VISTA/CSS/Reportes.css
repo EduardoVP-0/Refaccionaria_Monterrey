@@ -8,17 +8,7 @@
     transition: all 0.3s ease;
 }
 
-@media (min-width: 992px) {
-    .main-content {
-        padding-left: 304px;
-    }
-    .sidebar {
-        left: 0 !important;
-    }
-    nav .logo .menu-icon {
-        display: none;
-    }
-}
+
 
 /* =========================================
    TARJETAS INFORMATIVAS SUPERIORES (DASHBOARD)
