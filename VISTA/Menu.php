@@ -29,13 +29,29 @@
         </div>
 
         <div class="nav-item profile">
+            <?php
+            // Obtener datos del usuario logueado
+            $nombreUsuario = $_SESSION['usuario']['nombre'] ?? 'Administrador';
+            $apellidoUsuario = $_SESSION['usuario']['apaterno'] ?? '';
+            $correoUsuario = $_SESSION['usuario']['correo'] ?? 'usuario@refacmty.com';
+            
+            // Generar iniciales (Primera letra del nombre y primera del apellido)
+            $inicialNombre = !empty($nombreUsuario) ? strtoupper(substr($nombreUsuario, 0, 1)) : 'U';
+            $inicialApellido = !empty($apellidoUsuario) ? strtoupper(substr($apellidoUsuario, 0, 1)) : 'S';
+            $iniciales = $inicialNombre . $inicialApellido;
+            ?>
             <a href="#" class="profile-link" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
                 <div style="text-align: right; line-height: 1.2;">
-                    <span style="display: block; color: #fff; font-weight: 500; font-size: 14px;">Administrador</span>
-                    <span style="display: block; color: #a1a1aa; font-size: 12px;">admin@refacmty.com</span>
+                    <!-- Nombre y Apellido en negro según solicitado -->
+                    <span style="display: block; color: #000000; font-weight: 500; font-size: 14px;">
+                        <?php echo htmlspecialchars($nombreUsuario . ' ' . $apellidoUsuario); ?>
+                    </span>
+                    <span style="display: block; color: #a1a1aa; font-size: 12px;">
+                        <?php echo htmlspecialchars($correoUsuario); ?>
+                    </span>
                 </div>
-                <div class="profile-avatar" style="width: 35px; height: 35px; border-radius: 50%; background-color: #3b82f6; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                    AD
+                <div class="profile-avatar" style="width: 35px; height: 35px; border-radius: 50%; background-color: #3b82f6; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">
+                    <?php echo $iniciales; ?>
                 </div>
             </a>
         </div>
@@ -71,7 +87,7 @@
 
             <div class="bottom-content">
                 <li class="list">
-                    <a href="#" class="nav-link logout" style="color: #ef4444;">
+                    <a href="/Refaccionaria_Monterrey/CONTROLADOR/LogoutController.php" class="nav-link logout" style="color: #ef4444;">
                         <i class='bx bx-log-out iconi' style="color: #ef4444;"></i>
                         <span class="linki">Cerrar sesión</span>
                     </a>

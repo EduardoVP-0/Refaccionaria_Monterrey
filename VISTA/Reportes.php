@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Validar si existe sesión activa
+if (!isset($_SESSION['usuario'])) {
+    header("Location: /Refaccionaria_Monterrey/VISTA/Login.php");
+    exit();
+}
+
 // Vista principal de Reportes (Nueva ruta)
 
 // Incluir el modelo para obtener las estadísticas generales

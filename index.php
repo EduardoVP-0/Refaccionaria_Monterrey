@@ -2,6 +2,10 @@
 // Autoload o inclusión de archivos necesarios
 require_once 'MODELO/Conexion.php';
 
+// Redirigir temporalmente a la vista de Login en lugar de Reportes
+header('Location: VISTA/Login.php');
+exit;
+
 // Instanciar la conexión para probar (opcional)
 $db = new Conexion();
 $conn = $db->getConnection();
