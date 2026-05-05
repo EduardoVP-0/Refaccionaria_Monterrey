@@ -68,9 +68,15 @@
 
         <div class="sidebar-content">
             <ul class="lists">
-                <!-- Reportes (Activo) -->
+                <?php
+                // Detectar la página actual desde el parámetro 'p' del Front Controller
+                $p = $_GET['p'] ?? 'reportes';
+                ?>
+
+                <!-- Reportes -->
                 <li class="list">
-                    <a href="/Refaccionaria_Monterrey/VISTA/Reportes.php" class="nav-link active">
+                    <a href="/Refaccionaria_Monterrey/index.php?p=reportes"
+                       class="nav-link <?php echo $p === 'reportes' ? 'active' : ''; ?>">
                         <i class='bx bx-bar-chart-alt-2 icon'></i>
                         <span class="link">Reportes</span>
                     </a>
@@ -78,7 +84,8 @@
 
                 <!-- Usuarios -->
                 <li class="list">
-                    <a href="#" class="nav-link">
+                    <a href="/Refaccionaria_Monterrey/index.php?p=usuarios"
+                       class="nav-link <?php echo $p === 'usuarios' ? 'active' : ''; ?>">
                         <i class='bx bx-group icon'></i>
                         <span class="link">Usuarios</span>
                     </a>

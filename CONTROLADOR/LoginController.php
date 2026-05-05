@@ -12,7 +12,7 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['remember_token_refac'])) {
     
     if ($usuarioCookie && ($usuarioCookie['estado'] == 't' || $usuarioCookie['estado'] == true)) {
         iniciarSesion($usuarioCookie);
-        header('Location: /Refaccionaria_Monterrey/VISTA/Reportes.php');
+        header('Location: /Refaccionaria_Monterrey/index.php?p=reportes');
         exit();
     } else {
         // Token inválido o usuario desactivado, eliminar cookie
@@ -22,7 +22,7 @@ if (!isset($_SESSION['usuario']) && isset($_COOKIE['remember_token_refac'])) {
 
 // 2. Si ya hay sesión iniciada manualmente, redirigir
 if (isset($_SESSION['usuario'])) {
-    header('Location: /Refaccionaria_Monterrey/VISTA/Reportes.php');
+    header('Location: /Refaccionaria_Monterrey/index.php?p=reportes');
     exit();
 }
 
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($correo) || empty($password)) {
         $_SESSION['login_error'] = 'Por favor, complete todos los campos.';
-        header('Location: /Refaccionaria_Monterrey/VISTA/Login.php');
+        header('Location: /Refaccionaria_Monterrey/index.php?p=login');
         exit();
     } else {
         $usuario = $modelo->getUsuarioByCorreo($correo);
@@ -42,13 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($usuario) {
             if ($usuario['estado'] == 't' || $usuario['estado'] == true) {
                 // --- Validación de Contraseña ---
-                // Paso 1: Intentar validar como contraseña encriptada (Recomendado)
+                // Solo se aceptan contraseñas encriptadas (bcrypt)
                 $acceso_valido = password_verify($password, $usuario['password']);
-
-                // Paso 2: Fallback para contraseñas en texto plano
-                if (!$acceso_valido && $password === $usuario['password']) {
-                    $acceso_valido = true;
-                }
 
                 if ($acceso_valido) {
                     // Si el usuario marcó "Recordar sesión"
@@ -63,22 +58,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     // Iniciar sesión
                     iniciarSesion($usuario);
 
-                    // Redireccionar a dashboard
-                    header('Location: /Refaccionaria_Monterrey/VISTA/Reportes.php');
+                    // Redireccionar a dashboard a través del front controller
+                    header('Location: /Refaccionaria_Monterrey/index.php?p=reportes');
                     exit();
                 } else {
                     $_SESSION['login_error'] = 'Correo o contraseña incorrectos.';
-                    header('Location: /Refaccionaria_Monterrey/VISTA/Login.php');
+                    header('Location: /Refaccionaria_Monterrey/index.php?p=login');
                     exit();
                 }
             } else {
                 $_SESSION['login_error'] = 'Su cuenta se encuentra desactivada. Contacte al administrador.';
-                header('Location: /Refaccionaria_Monterrey/VISTA/Login.php');
+                header('Location: /Refaccionaria_Monterrey/index.php?p=login');
                 exit();
             }
         } else {
             $_SESSION['login_error'] = 'Correo o contraseña incorrectos.';
-            header('Location: /Refaccionaria_Monterrey/VISTA/Login.php');
+            header('Location: /Refaccionaria_Monterrey/index.php?p=login');
             exit();
         }
     }

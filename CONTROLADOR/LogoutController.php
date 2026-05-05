@@ -19,7 +19,7 @@ $_SESSION = array();
 // Destruir la sesión final
 session_destroy();
 
-// Redirigir al inicio de sesión
-header("Location: /Refaccionaria_Monterrey/VISTA/Login.php");
+// Redirigir al inicio de sesión a través del router
+header("Location: /Refaccionaria_Monterrey/index.php?p=login");
 exit();
 ?>

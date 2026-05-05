@@ -1,3 +1,15 @@
+<?php
+// Evitar acceso directo (forzar paso por index.php para URL limpia)
+if (!defined('ACCESO_PROTEGIDO')) {
+    // Si no es por el router, lo mandamos al router
+    header("Location: /Refaccionaria_Monterrey/index.php?p=login");
+    exit();
+}
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,12 +40,6 @@
 
             <!-- Manejo de Errores -->
             <?php 
-            // Iniciar sesión solo para obtener posibles errores si venimos del controlador con problemas de redisección o usando la variable global
-            // Como este archivo puede ser incluido directo o llamado, verificamos si hay variable $error.
-            // Para mantener MVC puro, el controlador carga la vista, pero si el usuario entra directo a Login.php...
-            // Lo ideal es que el form apunte a LoginController.php.
-            // Si hay error en sesión, lo mostramos.
-            session_start();
             if (isset($_SESSION['login_error'])) {
                 echo '<div style="background: #FEE2E2; color: #991B1B; padding: 12px; border-radius: 10px; margin-bottom: 20px; font-size: 13px;">';
                 echo htmlspecialchars($_SESSION['login_error']);
@@ -66,9 +72,6 @@
                     <div class="checkbox-group">
                         <input type="checkbox" id="recordar" name="recordar">
                         <label for="recordar">Recordar sesión</label>
-                    </div>
-                    <div class="forgot-password">
-                        <a href="#">¿Olvidaste tu contraseña?</a>
                     </div>
                 </div>
 

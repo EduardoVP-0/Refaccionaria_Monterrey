@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Conexion.php';
+require_once __DIR__ . '/Encriptacion.php';
 
 class LoginModel
 {
@@ -14,6 +15,8 @@ class LoginModel
 
     /**
      * Busca un usuario por su correo electrónico.
+     * 
+     * Intento 1: buscar con el correo CIFRADO (usuarios nuevos).
      */
     public function getUsuarioByCorreo($correo)
     {
@@ -21,8 +24,17 @@ class LoginModel
                   FROM tblusuarios 
                   WHERE correo = :correo LIMIT 1";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute([':correo' => $correo]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // --- Intento 1: correo cifrado ---
+        $correo_cifrado = Encriptacion::encriptar($correo);
+        $stmt->execute([':correo' => $correo_cifrado]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            // Encontrado cifrado → descifrar para la sesión
+            $row['correo'] = Encriptacion::desencriptar($row['correo']);
+            return $row;
+        }
     }
 
     /**
@@ -48,7 +60,13 @@ class LoginModel
                   WHERE remember_token = :token LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([':token' => $token]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Descifrar el correo para que la sesión tenga el valor legible
+        if ($row) {
+            $row['correo'] = Encriptacion::desencriptar($row['correo']);
+        }
+        return $row;
     }
 }
 ?>

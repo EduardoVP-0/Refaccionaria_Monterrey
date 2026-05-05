@@ -1,9 +1,13 @@
 <?php
-session_start();
+// Evitar acceso directo por URL (solo a través del Front Controller index.php)
+if (!defined('ACCESO_PROTEGIDO')) {
+    header("Location: /Refaccionaria_Monterrey/index.php");
+    exit();
+}
 
 // Validar si existe sesión activa
 if (!isset($_SESSION['usuario'])) {
-    header("Location: /Refaccionaria_Monterrey/VISTA/Login.php");
+    header("Location: /Refaccionaria_Monterrey/index.php?p=login");
     exit();
 }
 
@@ -105,7 +109,7 @@ $gasto_mensual = number_format($modelo->getGastoMensualTotal(), 2);
                 <div class="ficha-card" data-id="2">
                     <i class='bx bx-time-five ficha-icon'></i>
                     <div class="ficha-info">
-                        <h4>Antigüedad</h4>
+                        <h4>Reporte de Antigüedad</h4>
                         <p>Departamento 20</p>
                     </div>
                 </div>

@@ -25,6 +25,8 @@ class ReportesModel
          * JOIN: Une la tabla de departamentos con la de empleados. Funciona como un puente donde la condición 'ON' (d.id_departamento = e.id_departamento) asegura que solo se unan los empleados que pertenecen a ese departamento en específico.
          * GROUP BY: Agrupa las filas por departamento. Esto es OBLIGATORIO cuando usamos funciones matemáticas como AVG o SUM, porque le dice a la base de datos "calcula el promedio POR CADA departamento".
          * ORDER BY: Ordena los resultados finales. En este caso numéricamente por el ID del departamento.
+         * Si utilizo LEFT JOIN me aparecen los departamentos aunque no tengan empleados, y en el campo SALARIO PROMEDIO me aparecerá NULL.
+         * Si utilizo INNER JOIN me aparecen solo los departamentos que tengan empleados.
          */
         $query = "
             SELECT 
