@@ -56,12 +56,14 @@ class ReportesModel
          * TRUNC(... / 7): 'TRUNC' corta los decimales. Al dividir esos días entre 7, obtenemos las SEMANAS exactas que han pasado.
          * WHERE: Filtra los resultados ANTES de procesarlos, dejando pasar SOLO a los empleados cuyo id_departamento sea 20.
          * ORDER BY ... DESC, ... ASC: Primero ordena por antigüedad de mayor a menor (DESC) y en caso de empate, alfabéticamente por apellido paterno (ASC).
+         * Aqui no supe cual ID se referia si el del empleado o el del departamento asi que puse los dos
          */
         $query = "
             SELECT 
                 e.nombre || ' ' || e.apaterno || ' ' || COALESCE(e.amaterno, '') AS \"NOMBRE COMPLETO\",
                 e.fecha_contratacion AS \"FECHA DE CONTRATACIÓN\",
                 e.id_empleado AS \"ID EMPLEADO\",
+                d.id_departamento AS \"ID DEPARTAMENTO\",
                 d.nombre_departamento AS \"DEPARTAMENTO\",
                 TRUNC((CURRENT_DATE - e.fecha_contratacion) / 7) AS \"SEMANAS DE ANTIGÜEDAD\"
             FROM tblempleados e
@@ -296,34 +298,38 @@ class ReportesModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     // =============== MÉTODOS PARA TARJETAS GENERALES DEL DASHBOARD ===============
-    
-    public function getTotalEmpleados() {
+
+    public function getTotalEmpleados()
+    {
         $query = "SELECT COUNT(*) AS total FROM tblempleados";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row['total'];
     }
-    
-    public function getTotalDepartamentos() {
+
+    public function getTotalDepartamentos()
+    {
         $query = "SELECT COUNT(*) AS total FROM tbldepartamentos";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row['total'];
     }
-    
-    public function getTotalSucursales() {
+
+    public function getTotalSucursales()
+    {
         $query = "SELECT COUNT(*) AS total FROM tblsucursales";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row['total'];
     }
-    
-    public function getGastoMensualTotal() {
+
+    public function getGastoMensualTotal()
+    {
         $query = "SELECT SUM(salario) AS total FROM tblempleados";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
